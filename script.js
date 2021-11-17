@@ -15,9 +15,9 @@ const contactList = [ 
 
 
 function cleanUpIndex() {
-    let eleList = document.querySelector('.main')
+    let mainContent = document.querySelector('.main')
     
-    eleList.innerHTML = ""
+    mainContent.innerHTML = ""
 }
 
 
@@ -26,4 +26,14 @@ function renderIndex(contactArray) {
     for (let i = 0; i < contactArray.length; i++) {
         body.innerHTML += '<a href="page3.html"><div class="contact">' + contactArray[i].name + '</div></a>'
     }
+}
+
+function cleanUpView() {
+    let mainContent = document.querySelector('.main')
+    
+    mainContent.innerHTML = ""
+}
+
+function renderView() {
+
 }
