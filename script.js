@@ -1,28 +1,32 @@
 function cleanUpIndex() {
-    let mainContent = document.querySelector('.main')
+    let mainClassElem = document.querySelector('.main')
     
-    mainContent.innerHTML = ""
+    while (mainClassElem.firstChild) {
+		mainClassElem.removeChild(mainClassElem.firstChild)
+	}
 }
 
 function createSingleIndex(contact) {
     return `<a href="page3.html"><div class="contact">${contact.name}</div></a>`
 }
 
-function renderIndex(contactArray) {
-    let mainContent = document.querySelector('.main')
-    for (let i = 0; i < contactArray.length; i++) {
-        mainContent.innerHTML += createSingleIndex(contactArray[i])
+function renderIndex(contactList) {
+    let mainClassElem = document.querySelector('.main')
+    for (let i = 0; i < contactList.length; i++) {
+        mainClassElem.insertAdjacentHTML('beforeend', createSingleIndex(contactList[i]))
     }
 }
 
-function cleanUpView() {
-    let mainContent = document.querySelector('.main')
+function cleanUpCreate() {
+    let mainClassElem = document.querySelector('.main')
     
-    mainContent.innerHTML = ""
+    while (mainClassElem.firstChild) {
+		mainClassElem.removeChild(mainClassElem.firstChild)
+	}
 }
 
-function renderView() {
-    let mainContent = document.querySelector('.main')
+function renderCreate() {
+    let mainClassElem = document.querySelector('.main')
     
     let inputTypeList = ['text', 'tel', 'text', 'email']
     let placeholderList = ['Name', 'Phone', 'Address', 'Email']
@@ -42,7 +46,7 @@ function renderView() {
 		</div>`
 	}
 
-	mainContent.innerHTML += 
+	let contactEditNode = 
 	`<div class="contactedit">
 		<div class="contactimg">
 			<img src="./img/profile.jpg" class ="profilepic" alt="Profile picture">
@@ -52,6 +56,8 @@ function renderView() {
 			</form>
 		</div>	
 	</div>`
+
+	mainClassElem.insertAdjacentHTML('afterbegin', contactEditNode)
 
 	let formContent = document.querySelector('form')
 
@@ -68,20 +74,24 @@ function renderView() {
 	formContent.insertAdjacentHTML('beforeend', page2ButtonHTML)
 }
 
-function cleanUpCreate() {
-	let mainContent = document.querySelector('.main')
+function cleanUpView() {
+	let mainClassElem = document.querySelector('.main')
 
-	mainContent.innerHTML = ""
+	while (mainClassElem.firstChild) {
+		mainClassElem.removeChild(mainClassElem.firstChild)
+	}
 }
 
-function renderCreate(contact) {
-	let mainContent = document.querySelector('.main')
+function renderView(contact) {
+	let mainClassElem = document.querySelector('.main')
 
     let paramList = ['name', 'email', 'phone', 'address']
 
     let fieldNodes = []
 
-    for (let i = 0; i < 4; i++) {
+    fieldNodes.push(`<div class="contact${paramList[0]}">${contact[paramList[0]]}</div>`)
+
+    for (let i = 1; i < 4; i++) {
         toAdd = `<div class="contact${paramList[i]}">${paramList[i]}: ${contact[paramList[i]]}</div>`
         fieldNodes.push(toAdd)
     }
@@ -94,14 +104,13 @@ function renderCreate(contact) {
 
     let imageNode = `<img src="./img/profile.jpg" class="profilepic" alt="Profile picture">`
 
-    mainContent.insertAdjacentHTML('afterbegin', `<div class='contactinfo'></div>`)
+    mainClassElem.insertAdjacentHTML('afterbegin', `<div class='contactinfo'></div>`)
 
-    let contactinfoContent = document.querySelector('.contactinfo')
-
+    let contactInfoElem = document.querySelector('.contactinfo')
     for (let i = 0; i < 4; i++) {
-        contactinfoContent.insertAdjacentHTML('beforeend', fieldNodes[i])
+        contactInfoElem.insertAdjacentHTML('beforeend', fieldNodes[i])
     }
-    contactinfoContent.insertAdjacentHTML('beforeend', buttonsNode)
+    contactInfoElem.insertAdjacentHTML('beforeend', buttonsNode)
     
     document.querySelector('.contactname').insertAdjacentHTML('beforeend', imageNode)
 }
