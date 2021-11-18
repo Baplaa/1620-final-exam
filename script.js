@@ -1,19 +1,3 @@
-const contactList = [  
-	{ 
-		name: "Oliver Queen", 
-		phone: "778-555-1234", 
-		address: "101 Main St, Star City, USA",    
-		email: "greenarrow@watchtower.com",  
-	},   
-	{    
-		name: "Jessica Cruz",    
-		phone: "123-555-5555",    
-		address: "Portland Oregon",    
-		email: "greenlantern@watchtower.com",  
-	}
-]
-
-
 function cleanUpIndex() {
     let mainContent = document.querySelector('.main')
     
@@ -85,11 +69,39 @@ function renderView() {
 }
 
 function cleanUpCreate() {
-	let mainContent = document.querySelector('main')
+	let mainContent = document.querySelector('.main')
 
 	mainContent.innerHTML = ""
 }
 
 function renderCreate(contact) {
-	
+	let mainContent = document.querySelector('.main')
+
+    let paramList = ['name', 'email', 'phone', 'address']
+
+    let fieldNodes = []
+
+    for (let i = 0; i < 4; i++) {
+        toAdd = `<div class="contact${paramList[i]}">${paramList[i]}: ${contact[paramList[i]]}</div>`
+        fieldNodes.push(toAdd)
+    }
+
+    let buttonsNode = 
+    `<div class="buttons">
+        <button class="button edit" value="Edit">Edit</button>
+        <button class="button close" value="Close">Close</button>
+    </div>`
+
+    let imageNode = `<img src="./img/profile.jpg" class="profilepic" alt="Profile picture">`
+
+    mainContent.insertAdjacentHTML('afterbegin', `<div class='contactinfo'></div>`)
+
+    let contactinfoContent = document.querySelector('.contactinfo')
+
+    for (let i = 0; i < 4; i++) {
+        contactinfoContent.insertAdjacentHTML('beforeend', fieldNodes[i])
+    }
+    contactinfoContent.insertAdjacentHTML('beforeend', buttonsNode)
+    
+    document.querySelector('.contactname').insertAdjacentHTML('beforeend', imageNode)
 }
