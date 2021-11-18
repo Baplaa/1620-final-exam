@@ -82,6 +82,14 @@ function renderView() {
 	</div>`
 
 	formContent.insertAdjacentHTML('beforeend', page2ButtonHTML)
+}
 
+function cleanUpCreate() {
+	let mainContent = document.querySelector('main')
 
+	mainContent.innerHTML = ""
+}
+
+function renderCreate(contact) {
+	
 }
